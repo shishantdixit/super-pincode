@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperPincode - Pincode Verification</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="logo.svg" alt="SuperPincode Logo" class="logo-img me-2"> SuperPincode
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            <i class="bi bi-house-fill"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search">
+                            <i class="bi bi-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="bi bi-info-circle-fill"></i> About
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <img src="logo.svg" alt="SuperPincode Logo" class="hero-logo mb-4">
+                    <h1 class="display-4 fw-bold mb-3">Pincode & Location Finder</h1>
+                    <p class="lead mb-4">Search by pincode or location to get complete address details instantly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5" id="search">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Search Tabs Card -->
+                <div class="card shadow-lg border-0 mb-4">
+                    <div class="card-header bg-white border-0 pt-4">
+                        <ul class="nav nav-pills nav-fill" id="searchTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pincode-tab" data-bs-toggle="pill" data-bs-target="#pincode-search" type="button" role="tab" aria-controls="pincode-search" aria-selected="true">
+                                    <i class="bi bi-pin-map-fill"></i> Search by Pincode
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="location-tab" data-bs-toggle="pill" data-bs-target="#location-search" type="button" role="tab" aria-controls="location-search" aria-selected="false">
+                                    <i class="bi bi-geo-alt-fill"></i> Search by Location
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="db-tab" data-bs-toggle="pill" data-bs-target="#db-search" type="button" role="tab" aria-controls="db-search" aria-selected="false">
+                                    <i class="bi bi-database-fill"></i> Search from DB
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <div class="tab-content" id="searchTabContent">
+                            <!-- Pincode Search Tab -->
+                            <div class="tab-pane fade show active" id="pincode-search" role="tabpanel" aria-labelledby="pincode-tab">
+                                <form id="pincodeForm">
+                                    <div class="input-group input-group-lg mb-3">
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-pin-map"></i>
+                                        </span>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="pincodeInput"
+                                            placeholder="Enter 6-digit pincode (e.g., 110001)"
+                                            maxlength="6"
+                                            pattern="[0-9]{6}"
+                                            required
+                                        >
+                                        <button class="btn btn-primary px-4" type="submit" id="searchBtn">
+                                            <i class="bi bi-search"></i> Search
+                                        </button>
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle"></i> Enter a valid 6-digit Indian pincode
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Location Search Tab -->
+                            <div class="tab-pane fade" id="location-search" role="tabpanel" aria-labelledby="location-tab">
+                                <form id="locationForm">
+                                    <div class="input-group input-group-lg mb-3">
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-geo-alt"></i>
+                                        </span>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="locationInput"
+                                            placeholder="Enter post office or location name (e.g., Connaught Place)"
+                                            required
+                                        >
+                                        <button class="btn btn-primary px-4" type="submit" id="locationSearchBtn">
+                                            <i class="bi bi-search"></i> Search
+                                        </button>
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle"></i> Enter a post office name, city, or location
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- DB Search Tab -->
+                            <div class="tab-pane fade" id="db-search" role="tabpanel" aria-labelledby="db-tab">
+                                <form id="dbForm">
+                                    <div class="input-group input-group-lg mb-3">
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-database"></i>
+                                        </span>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="dbInput"
+                                            placeholder="Enter 6-digit pincode (e.g., 110001)"
+                                            maxlength="6"
+                                            pattern="[0-9]{6}"
+                                            required
+                                        >
+                                        <button class="btn btn-primary px-4" type="submit" id="dbSearchBtn">
+                                            <i class="bi bi-search"></i> Search
+                                        </button>
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle"></i> Search pincode from local database (PincodeData.json)
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="text-center my-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Fetching pincode details...</p>
+                </div>
+
+                <!-- Error Alert -->
+                <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>Error!</strong> <span id="errorMessage"></span>
+                    <button type="button" class="btn-close" onclick="hideError()"></button>
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" style="display: none;">
+                    <h5 class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success"></i> Pincode Details
+                    </h5>
+
+                    <!-- Summary Card -->
+                    <div class="card border-success mb-3 shadow">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="mb-0">
+                                <i class="bi bi-pin-angle-fill"></i> Pincode: <span id="resultPincode"></span>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">Post Office</small>
+                                        <strong id="postOffice">-</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">District</small>
+                                        <strong id="district">-</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">State</small>
+                                        <strong id="state">-</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">Region</small>
+                                        <strong id="region">-</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">Division</small>
+                                        <strong id="division">-</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="detail-item">
+                                        <small class="text-muted d-block">Country</small>
+                                        <strong id="country">India</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Post Offices -->
+                    <div id="allPostOffices" class="mt-4">
+                        <h6 class="mb-3">
+                            <i class="bi bi-mailbox"></i> All Post Offices in this Area
+                        </h6>
+                        <div id="postOfficesList" class="row">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                <i class="bi bi-geo-alt"></i> SuperPincode - Pincode Verification System
+            </p>
+            <small class="text-muted">Made with <i class="bi bi-heart-fill text-danger"></i></small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

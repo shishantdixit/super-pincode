@@ -1,0 +1,6 @@
+@echo off
+echo Starting SuperPincode Local Server...
+echo.
+echo Please wait, starting server...
+echo.
+node server.js

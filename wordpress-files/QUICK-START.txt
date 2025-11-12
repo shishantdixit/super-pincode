@@ -1,0 +1,109 @@
+═══════════════════════════════════════════════════════════════
+  SUPERPINCODE - WORDPRESS INSTALLATION QUICK GUIDE
+═══════════════════════════════════════════════════════════════
+
+DOMAIN: superpincode.in (Hostinger)
+
+📦 FILES IN THIS FOLDER:
+────────────────────────────────────────────────────────────────
+1. page-superpincode.php       - WordPress template (12 KB)
+2. logo.svg                     - Logo file (2 KB)
+3. PincodeData.json            - Database (76 MB)
+4. WORDPRESS-SETUP-GUIDE.md    - Detailed instructions
+5. QUICK-START.txt             - This file
+
+═══════════════════════════════════════════════════════════════
+  INSTALLATION STEPS (5 MINUTES)
+═══════════════════════════════════════════════════════════════
+
+STEP 1: LOGIN TO HOSTINGER
+───────────────────────────────────────────────────────────────
+→ Go to: hpanel.hostinger.com
+→ Login with your credentials
+
+STEP 2: OPEN FILE MANAGER
+───────────────────────────────────────────────────────────────
+→ Click: Files → File Manager
+→ Navigate to: public_html/wp-content/themes/
+→ Find your ACTIVE theme folder (check WordPress → Appearance)
+
+STEP 3: CREATE FOLDER
+───────────────────────────────────────────────────────────────
+→ Inside your theme folder, create: superpincode-assets
+
+STEP 4: UPLOAD FILES
+───────────────────────────────────────────────────────────────
+Upload to theme root folder:
+  ✓ page-superpincode.php
+
+Upload to superpincode-assets folder:
+  ✓ logo.svg
+  ✓ PincodeData.json
+
+STEP 5: CREATE PAGE IN WORDPRESS
+───────────────────────────────────────────────────────────────
+→ Go to: https://superpincode.in/wp-admin
+→ Pages → Add New
+→ Title: "Search" or "Home"
+→ Template: Select "SuperPincode Search"
+→ Click: Publish
+
+═══════════════════════════════════════════════════════════════
+  FINAL FOLDER STRUCTURE
+═══════════════════════════════════════════════════════════════
+
+/public_html/wp-content/themes/your-theme-name/
+├── page-superpincode.php                    ← Upload here
+├── superpincode-assets/                     ← Create this folder
+│   ├── logo.svg                            ← Upload here
+│   └── PincodeData.json                    ← Upload here
+└── (other theme files...)
+
+═══════════════════════════════════════════════════════════════
+  MAKING IT YOUR HOMEPAGE (OPTIONAL)
+═══════════════════════════════════════════════════════════════
+
+→ WordPress Admin → Settings → Reading
+→ "Your homepage displays" → Select "A static page"
+→ Homepage: Select your SuperPincode page
+→ Save Changes
+
+Now https://superpincode.in will show SuperPincode search!
+
+═══════════════════════════════════════════════════════════════
+  FEATURES
+═══════════════════════════════════════════════════════════════
+
+✓ Search by Pincode      - Uses India Post API
+✓ Search by Location     - Search by post office name
+✓ Search from DB         - Local database (165K+ records)
+✓ Beautiful Design       - Purple gradient, animations
+✓ Mobile Responsive      - Works on all devices
+✓ Fast & Reliable        - Cached database for speed
+
+═══════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+❌ Template not showing?
+   → Refresh WordPress admin page (Ctrl + F5)
+   → Check file is in active theme folder
+
+❌ Logo not showing?
+   → Verify path: /superpincode-assets/logo.svg
+   → Check file uploaded correctly
+
+❌ DB search not working?
+   → File is 76 MB, may take time to load first time
+   → Check file size after upload
+
+═══════════════════════════════════════════════════════════════
+  SUPPORT
+═══════════════════════════════════════════════════════════════
+
+📧 For detailed instructions, see: WORDPRESS-SETUP-GUIDE.md
+🌐 Test URL: https://superpincode.in/your-page-slug/
+
+═══════════════════════════════════════════════════════════════
+  DONE! 🎉
+═══════════════════════════════════════════════════════════════

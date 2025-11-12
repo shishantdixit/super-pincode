@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperPincode Logo - 180x60 PNG Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .logo-preview {
+            border: 2px solid #ddd;
+            padding: 20px;
+            background: white;
+            margin: 20px 0;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            display: block;
+            margin: 20px auto;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SuperPincode Logo Generator (180x60)</h1>
+
+        <div class="logo-preview">
+            <p><strong>Logo Preview:</strong></p>
+            <canvas id="logoCanvas" width="180" height="60"></canvas>
+        </div>
+
+        <div style="text-align: center;">
+            <button onclick="downloadPNG()">⬇ Download as PNG</button>
+            <button onclick="downloadSVG()">⬇ Download as SVG</button>
+        </div>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click "Download as PNG" to save the logo as a PNG file</li>
+                <li>The PNG will be exactly 180x60 pixels (WordPress recommended size)</li>
+                <li>Upload this PNG to your WordPress site:
+                    <ul>
+                        <li>Go to <strong>Appearance → Customize → Site Identity</strong></li>
+                        <li>Click "Select Logo" and upload the PNG</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Draw logo on canvas
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawLogo() {
+            // Clear canvas
+            ctx.clearRect(0, 0, 180, 60);
+
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 180, 60);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+
+            // Draw rounded rectangle background
+            ctx.fillStyle = gradient;
+            roundRect(ctx, 0, 0, 180, 60, 8);
+            ctx.fill();
+
+            // Draw location pin icon
+            ctx.save();
+            ctx.translate(15, 10);
+
+            // Pin shape
+            const pinGradient = ctx.createLinearGradient(0, 0, 40, 40);
+            pinGradient.addColorStop(0, '#ffffff');
+            pinGradient.addColorStop(1, '#f0f0f0');
+
+            ctx.fillStyle = pinGradient;
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+
+            ctx.beginPath();
+            ctx.moveTo(20, 5);
+            ctx.bezierCurveTo(13, 5, 8, 10, 8, 17);
+            ctx.bezierCurveTo(8, 21, 10, 25, 20, 35);
+            ctx.bezierCurveTo(30, 25, 32, 21, 32, 17);
+            ctx.bezierCurveTo(32, 10, 27, 5, 20, 5);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Inner circle
+            const circleGradient = ctx.createLinearGradient(14, 11, 26, 23);
+            circleGradient.addColorStop(0, '#667eea');
+            circleGradient.addColorStop(1, '#764ba2');
+
+            ctx.fillStyle = circleGradient;
+            ctx.beginPath();
+            ctx.arc(20, 17, 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
+
+            // Draw text "SuperPincode"
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 22px Arial, sans-serif';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SuperPincode', 58, 30);
+        }
+
+        // Helper function for rounded rectangle
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Download PNG
+        function downloadPNG() {
+            const link = document.createElement('a');
+            link.download = 'superpincode-logo-180x60.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Download SVG
+        function downloadSVG() {
+            const svgData = `<svg width="180" height="60" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="180" height="60" rx="8" fill="url(#pinGradient)"/>
+  <g transform="translate(15, 10)">
+    <path d="M 20 5 C 13 5, 8 10, 8 17 C 8 21, 10 25, 20 35 C 30 25, 32 21, 32 17 C 32 10, 27 5, 20 5 Z"
+          fill="url(#whiteGradient)" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="20" cy="17" r="6" fill="url(#pinGradient)"/>
+  </g>
+  <text x="58" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">SuperPincode</text>
+</svg>`;
+
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = 'superpincode-logo-180x60.svg';
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Draw logo when page loads
+        drawLogo();
+    </script>
+</body>
+</html>
